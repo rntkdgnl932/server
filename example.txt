@@ -1,2 +1,2 @@
 all_games : start / stop
-game_name : start / stop / update
+game_name : start / stop / update..
