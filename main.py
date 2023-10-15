@@ -1,100 +1,102 @@
-# This is a sample Python script.
+# * QTabWidget 탭에 다양한 위젯 추가
+import numpy as np
+from PyQt5.QtWidgets import *
+# from PyQt5.QtGui import QIcon, QFont       #아이콘
+from PyQt5.QtCore import Qt, QThread
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import sys
 
-# FTP 서버 정보
-ftp_server = '122.36.80.50'
-ftp_username = 'gamer'
-ftp_password = 'coobccocco'
-
-import requests
-from ftplib import FTP
+sys.path.append('C:/my_games/my_server/data_server/mymodule')
 import os
-import pandas
+import time
+from datetime import datetime
+import random
+import os.path
+from datetime import date, timedelta
+import re
+import git
 
-data_list = []  # data_list 변수를 전역 변수로 초기화
+import cv2
+# print(cv2.__version__)
+# import matplotlib.pyplot as plt
+from PIL import Image
 
-def print_hi2(name):
-    token = "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"
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import numpy
+# 패키지 다운 필요
+import pytesseract
+# from pytesseract import image_to_string #
+import pyautogui
+import pydirectinput
+import clipboard
 
-
-
-
-    # 로컬 파일 경로 (절대 경로 사용)
-    local_file_path = 'C:/my_games/test.txt'
-
-    # 원격 파일 경로 (FTP 서버 내)
-    remote_file_path = '/moonlight/test_oner.txt'
-
-    # FTP 연결 및 파일 업로드
-    try:
-        with FTP(ftp_server) as ftp:
-            ftp.login(ftp_username, ftp_password)
-            with open(local_file_path, 'rb') as file:
-                ftp.storbinary('STOR ' + remote_file_path, file)
-            print(f'로컬 파일 {local_file_path}을 FTP 서버의 {remote_file_path}로 업로드했습니다.')
-    except Exception as e:
-        print(f'파일 업로드 실패: {e}')
-
-
-# 함수를 정의하여 파일을 다운로드하고 처리
-def download_and_process_file(ftp, remote_file):
-    file_name, _ = os.path.splitext(remote_file)
-    content = ''
-    def handle_binary(data):
-        nonlocal content
-        content += data.decode('utf-8')
-    ftp.retrbinary('RETR ' + remote_file, callback=handle_binary)
-    data_list.append(f'{file_name}:{content}')
+# import keyboard
 
 
 
-def print_hi(name):
-    token = "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"
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# 패키지 다운 불필요
+import tkinter
+import webbrowser
+import colorthief
+import ctypes
+import shutil
+import serial
+import pydirectinput
+# 나의 모듈 모두 표시해야함
+# from function import imgs_set, imgs_set_, click_pos_2, random_int, text_check_get_3, int_put_, text_check_get, \
+#     click_with_image, drag_pos, image_processing, get_region, click_pos_reg
+
+from PIL import ImageGrab
+from functools import partial
 
 
+sys.setrecursionlimit(10 ** 7)
+# pyqt5 관련###################################################
+rowcount = 0
+colcount = 0
+thisRow = 0
+thisCol = 0
+table_datas = ""
+#  onCollection= False
+onCharacter = 0
+onRefresh_time = 0
+onDunjeon = "none"
+onDunjeon_level = 0
+onHunt = "none"
+onHunt2 = "none"
+onHunt3 = "none"
+onMaul = "none"
 
-    # 원격 파일 디렉토리 경로
-    remote_directory = '/moonlight'
+isgloballoop = False
 
-
-    # FTP 연결
-    try:
-        with FTP(ftp_server) as ftp:
-            ftp.login(ftp_username, ftp_password)
-
-            # 원격 디렉토리로 이동
-            ftp.cwd(remote_directory)
-
-            # 원격 디렉토리 내 파일 목록 얻기
-            file_list = ftp.nlst()
-
-            # 각 파일을 다운로드하고 데이터 처리
-            for remote_file in file_list:
-                download_and_process_file(ftp, remote_file)
-
-            # 결과 출력
-            print(data_list)
-
-            # data_list의 데이터를 데이터프레임으로 변환
-            data = [row.split(":") for row in data_list]
-            df = pandas.DataFrame(data, columns=["텍스트제목", "내용"])
-
-            # 데이터프레임을 엑셀 파일로 저장
-            excel_file_name = "C:/my_games/test.xlsx"
-            df.to_excel(excel_file_name, index=False)
-
-    except Exception as e:
-        print(f'파일 다운로드 및 처리 중 오류 발생: {e}')
+# 기존 오토모드 관련###############################################
 
 
-# Press the green button in the gutter to run the script.
+pyautogui.FAILSAFE = False
+####################################################################################################################
+# pytesseract.pytesseract.tesseract_cmd = R'E:\workspace\pythonProject\Tesseract-OCR\tesseract'
+pytesseract.pytesseract.tesseract_cmd = R'C:\Program Files\Tesseract-OCR\tesseract'
+from PyQt5.QtWidgets import *
+import sys
+
+import main_p
+
+sys.path.append('C:/my_games/my_server/data_server/mymodule')
+
+import os.path
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    try:
+        app = QApplication(sys.argv)
+        ex = main_p.MyApp()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        # Back up the reference to the exceptionhook
+        sys._excepthook = sys.excepthook
+
+        # Set the exception hook to our wrapping function
+        sys.excepthook = main_p.my_exception_hook
+
+        sys.exit(app.exec_())
+    except Exception as e:
+        print(e)
+        print("프로그램 꺼지기전 정지")
+        os.system("pause")
