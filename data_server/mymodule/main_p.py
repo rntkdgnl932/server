@@ -267,6 +267,9 @@ class server_Tab(QWidget):
                 excel_file_name = dir_path + last + ".xlsx"
                 df.to_excel(excel_file_name, index=False)
 
+                btn = pyautogui.alert(button='오냐', text='엑셀 파일로 저장했습니다. 꼬꼬님', title='엑셀로 저장')
+                print(btn)
+
         except Exception as e:
             print(f'파일 다운로드 및 처리 중 오류 발생: {e}')
 
