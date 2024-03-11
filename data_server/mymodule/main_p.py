@@ -208,8 +208,8 @@ class server_Tab(QWidget):
 
     def excel_download_folder(self):
         remote_directories = [
-            '/moonlight/coob',
-            '/moonlight/ccocco',
+            '/rom/coob',
+            '/rom/ccocco',
             '/nightcrow/coob',
             '/nightcrow/ccocco',
             '/ares/coob',
