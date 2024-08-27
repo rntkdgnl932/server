@@ -121,7 +121,7 @@ class server_Tab(QWidget):
         self.propery_group = QGroupBox('검색 후 엑셀 다운 받기')
 
         game_select = QComboBox()
-        list_game = ['게임 종류', '나이트크로우', '롬', '아레스', '제노니아', '아스달', '레이븐2']
+        list_game = ['게임 종류', '나이트크로우', '롬', '아레스', '제노니아', '아스달', '레이븐2', '로드나인']
         game_select.addItems(list_game)
 
         user_select = QComboBox()
@@ -217,7 +217,9 @@ class server_Tab(QWidget):
             '/zenonia/coob',
             '/zenonia/ccocco',
             '/arthdal/coob',
-            '/raven2/coob'
+            '/raven2/coob',
+            '/lordnine/coob',
+            '/lordnine/ccocco'
         ]
         # FTP 연결
         try:
